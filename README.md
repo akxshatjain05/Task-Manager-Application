@@ -56,9 +56,17 @@ Task Editing: Tapping a task's name allows the user to edit it. This gives flexi
 A validation mechanism ensures that users cannot add empty tasks or tasks with only spaces. A toast is displayed when this happens, preventing invalid entries.
 Task editing also ensures that only valid task names are saved.
 
+
+-> Active Users
 ![Active Users](https://github.com/akxshatjain05/Task-Manager-Application/blob/main/Active%20Users.png)
+
+-> Realtime Analytics
 ![Realtime Analytics](https://github.com/akxshatjain05/Task-Manager-Application/blob/main/Realtime%20Analytics.png)
+
+-> Crashalytics
 ![Crashalytics](https://github.com/akxshatjain05/Task-Manager-Application/blob/main/Crashalytics.png)
+
+->Network Performance
 ![Network Performance](https://github.com/akxshatjain05/Task-Manager-Application/blob/main/Network%20Performance.png)
 
 
