@@ -16,6 +16,7 @@ Import the Project: Open Android Studio and select. Open an existing Android Stu
 
 Checkout to master branch:
 (“git checkout master”)
+-> : delete any commits showing then checkout to master.
 
 Install Dependencies: The project uses Gradle to manage dependencies. Once the project is opened in Android Studio, Gradle will automatically sync and download the necessary dependencies. If it doesn’t, go to the File > Sync Project with Gradle Files option.
 
