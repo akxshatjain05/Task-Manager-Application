@@ -1,6 +1,7 @@
 package com.example.task_manager.ui.adapter;
 
 import android.app.AlertDialog;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,13 +41,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         TaskEntity task = taskList.get(position);
         holder.taskName.setText(task.getTitle());
+
+        holder.taskCheckbox.setOnCheckedChangeListener(null);
+
         holder.taskCheckbox.setChecked(task.isCompleted());
+
+        if (task.isCompleted()) {
+            holder.taskName.setPaintFlags(holder.taskName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            holder.taskName.setPaintFlags(holder.taskName.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+        }
 
         holder.taskCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             task.setCompleted(isChecked);
             new Thread(() -> {
                 AppDatabase db = AppDatabase.getInstance(holder.itemView.getContext());
-                db.taskDao().insertTask(task);
+                db.taskDao().insertTask(task); // Update task in DB
             }).start();
         });
 
