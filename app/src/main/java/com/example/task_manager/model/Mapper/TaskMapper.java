@@ -1,4 +1,4 @@
-package com.example.task_manager.data.Mapper;
+package com.example.task_manager.model.Mapper;
 
 import com.example.task_manager.model.Task;
 import com.example.task_manager.data.entity.TaskEntity;

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.task_manager.Retrofit.ApiService;
 import com.example.task_manager.Retrofit.RetrofitClient;
 import com.example.task_manager.database.AppDatabase;
-import com.example.task_manager.model.TaskEntity;
+import com.example.task_manager.data.entity.TaskEntity;
 import com.example.task_manager.ui.adapter.TaskAdapter;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.perf.FirebasePerformance;

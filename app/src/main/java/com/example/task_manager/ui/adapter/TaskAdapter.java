@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.task_manager.R;
 import com.example.task_manager.database.AppDatabase;
-import com.example.task_manager.model.TaskEntity;
+import com.example.task_manager.data.entity.TaskEntity;
 
 import java.util.List;
 

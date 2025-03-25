@@ -5,8 +5,8 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.example.task_manager.database.AppDatabase;
-import com.example.task_manager.model.TaskEntity;
-import com.example.task_manager.model.Dao.TaskDao;
+import com.example.task_manager.data.entity.TaskEntity;
+import com.example.task_manager.data.dao.TaskDao;
 
 import java.util.List;
 

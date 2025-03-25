@@ -3,7 +3,7 @@ package com.example.task_manager.ui.viewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.task_manager.model.TaskEntity;
+import com.example.task_manager.data.entity.TaskEntity;
 import com.example.task_manager.repository.TaskRepository;
 
 import java.util.List;

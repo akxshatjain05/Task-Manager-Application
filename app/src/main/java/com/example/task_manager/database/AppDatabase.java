@@ -1,4 +1,4 @@
-    package com.example.task_manager.data.database;
+    package com.example.task_manager.database;
 
     import android.content.Context;
     import androidx.room.Database;
@@ -8,7 +8,7 @@
     import com.example.task_manager.data.dao.TaskDao;
     import com.example.task_manager.data.entity.TaskEntity;
 
-    @Database(entities = {TaskEntity.class}, version = 1)
+    @Database(entities = {TaskEntity.class}, version = 2)
     public abstract class AppDatabase extends RoomDatabase {
         private static AppDatabase instance;
 
