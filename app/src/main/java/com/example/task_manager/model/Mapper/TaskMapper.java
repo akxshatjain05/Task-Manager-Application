@@ -1,7 +1,7 @@
-package com.example.task_manager.model.Mapper;
+package com.example.task_manager.data.Mapper;
 
 import com.example.task_manager.model.Task;
-import com.example.task_manager.model.TaskEntity;
+import com.example.task_manager.data.entity.TaskEntity;
 
 public class TaskMapper {
     public static TaskEntity toEntity(Task task) {
