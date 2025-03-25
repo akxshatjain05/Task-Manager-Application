@@ -54,7 +54,12 @@ public class MainActivity extends AppCompatActivity {
         taskAdapter = new TaskAdapter(taskList, updatedTask -> {
             Log.d("Task Update", "Updated task: " + updatedTask.getTitle());
             saveTaskToDatabase(updatedTask);
-            logFirebaseEvent("task_edited", updatedTask.getTitle());
+
+            if (updatedTask.isCompleted()) {
+                logFirebaseEvent("task_completed", updatedTask.getTitle());
+            } else {
+                logFirebaseEvent("task_edited", updatedTask.getTitle());
+            }
         });
 
         recyclerView.setAdapter(taskAdapter);
@@ -155,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logFirebaseEvent(String eventName, String message) {
+        Log.d("FIREBASE_EVENT", "Event: " + eventName + ", Message: " + message);
         Bundle bundle = new Bundle();
         bundle.putString("event_name", eventName);
         bundle.putString("message", message);

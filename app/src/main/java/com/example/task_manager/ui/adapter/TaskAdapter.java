@@ -2,6 +2,7 @@ package com.example.task_manager.ui.adapter;
 
 import android.app.AlertDialog;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.taskName.setText(task.getTitle());
 
         holder.taskCheckbox.setOnCheckedChangeListener(null);
-
         holder.taskCheckbox.setChecked(task.isCompleted());
 
         if (task.isCompleted()) {
@@ -54,10 +54,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.taskCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             task.setCompleted(isChecked);
+            Log.d("TaskAdapter", "Task marked " + (isChecked ? "completed" : "not completed") + ": " + task.getTitle());
+
             new Thread(() -> {
                 AppDatabase db = AppDatabase.getInstance(holder.itemView.getContext());
-                db.taskDao().insertTask(task); // Update task in DB
+                db.taskDao().insertTask(task);
             }).start();
+
+            if (taskUpdateListener != null) {
+                taskUpdateListener.onTaskUpdated(task);
+            }
         });
 
         holder.taskName.setOnClickListener(v -> {
@@ -69,12 +75,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             builder.setView(input);
 
             builder.setPositiveButton("Save", (dialog, which) -> {
-                task.setTitle(input.getText().toString());
-                notifyItemChanged(position);
-                new Thread(() -> {
-                    AppDatabase db = AppDatabase.getInstance(v.getContext());
-                    db.taskDao().insertTask(task);
-                }).start();
+                String newTitle = input.getText().toString().trim();
+                if (!newTitle.isEmpty() && !newTitle.equals(task.getTitle())) {
+                    task.setTitle(newTitle);
+                    notifyItemChanged(position);
+                    Log.d("TaskAdapter", "Task edited: " + newTitle);
+
+                    new Thread(() -> {
+                        AppDatabase db = AppDatabase.getInstance(v.getContext());
+                        db.taskDao().insertTask(task);
+                    }).start();
+
+                    if (taskUpdateListener != null) {
+                        taskUpdateListener.onTaskUpdated(task);
+                    }
+                }
             });
 
             builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
